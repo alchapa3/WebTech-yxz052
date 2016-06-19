@@ -11,7 +11,8 @@
 
 	$dbhost = "localhost";
 	$dbuser = "root";
-	$dbpass = "";
+	$dbpass = "root";
+	//$dbpass = "";
 	$dbname = "myDB";
 
 
@@ -20,12 +21,9 @@
 	$username = $_SESSION["username"];
 	$result = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
 
-	//$row = mysqli_fetch_row($result);
 	$row = mysqli_fetch_assoc($result);
 
 	$userid = $row[id];
-
-
 
 	echo "<h1>Welcome, " .$row['Name']."!</h1>";
 	echo "<img src='".$row['profile_pic']."'>";
@@ -39,10 +37,6 @@
 	echo "<br>";
 
 	$result_posts = mysqli_query($conn, "SELECT * FROM posts");
-
-	//$result_comments = mysqli_query($conn, "SELECT * FROM comments");
-
-	//$num_of_coms = mysqli_num_rows($result_comments);
 
 	$num_of_rows = mysqli_num_rows($result_posts);
 	echo"<h2>My Feed</h2>";
@@ -68,21 +62,16 @@
 			echo "$row2[2] commented $row2[3]";
 			echo "<br>";
 		}
-		
-
-
 		echo "<form method='POST' action='comments.php'>";
 		echo "<label></label> <textarea name='content'>Leave a comment...</textarea> <br>";
 		echo "<input type='hidden' name='UID' value='$userid'>";
 		echo "<input type='hidden' name='post_id' value='$row[0]'>";
 		echo "<p> <input type='submit'> </p>";
 		echo "</form>";
-
 		echo "<br>";
 	}
 
 ?>
-
 
 </body>
 </html>

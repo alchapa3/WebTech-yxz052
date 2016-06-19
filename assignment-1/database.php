@@ -2,7 +2,8 @@
 
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpass = "";
+$dbpass = "root";
+//$dbpass = "";
 $dbname = "myDB";
 
 function connect_db(){
@@ -16,7 +17,5 @@ function connect_db(){
 
 }
 
-//echo "Success! Connected to the Database";
-//$conn = connect_db();
 
 ?>

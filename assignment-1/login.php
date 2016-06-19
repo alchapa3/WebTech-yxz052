@@ -1,6 +1,7 @@
 <?php
 
 	session_start();
+	
 	//get username and password from $_POST
 	$username = $_POST["username"];
 	$password = $_POST["password"];
@@ -10,7 +11,8 @@
 
 	$dbhost = "localhost";
 	$dbuser = "root";
-	$dbpass = "";
+	$dbpass = "root";
+	//$dbpass = "";
 	$dbname = "myDB";
 
 
@@ -31,12 +33,5 @@
 		//ask to login again
 		echo "Invalid password";
 	}
-
-	//If authenticated: say hello!
-
-	//else ask to login again..
-
-
-
 
 ?>

@@ -17,21 +17,13 @@
 	$propic = $_POST['profile_pic'];
 
 
-
 	//connect to DB
 	$conn = connect_db();
-	//$result = mysqli_query($conn, "SELECT * FROM users WHERE id = '$UID'");
-	//$row = mysqli_fetch_assoc($result);
-	//Fetch user info
-	//$name = $row["Name"];
-	//$profile_pic = $row["profile_pic"];
-
-
 
 	//hash the password prior to inserting 
 	$cpassword = crypt('$password','$6$rounds=5000$a0z1b9y2c8x3d7w4$');
-	//echo $cpassword;
 
+	//sanitize prior to insertion
 	$username = sanitizeString($conn, $username);
 	$cpassword = sanitizeString($conn, $cpassword);
 	$name = sanitizeString($conn, $name);
@@ -45,9 +37,10 @@
 
 
 	$result_insert = mysqli_query($conn, "INSERT INTO users(username, password, Name, email, dob, gender, verification_question, verification_answer, location, profile_pic) VALUES ('$username', '$cpassword', '$name', '$email', '$dob', '$gender', '$vquestion', '$vanswer', '$location', '$propic')");
+
 	//check if insert was ok
 	if($result_insert){
-		//redirect to feed pg
+		//redirect to feed page
 		$_SESSION["username"] = $username;
 		header("Location: feed.php");
 	}else{

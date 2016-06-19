@@ -4,14 +4,17 @@
 
 	include('database.php');
 	include('functions.php');
+
 	//get data from the form
 	$content = $_POST['content'];
 	$UID = $_POST['UID'];
 	$post_id = $_POST['post_id'];
+
 	//connect to DB
 	$conn = connect_db();
 	$result = mysqli_query($conn, "SELECT * FROM users WHERE id = '$UID'");
 	$row = mysqli_fetch_assoc($result);
+	
 	//Fetch user info
 	$name = $row["Name"];
 	$profile_pic = $row["profile_pic"];
